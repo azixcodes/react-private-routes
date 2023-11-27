@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { Route, Routes } from "react-router-dom";
+import PrivateRoutes from "./PrivateRoutes";
 function App() {
+  let auth = true;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section className="flex flex-col">
+      <Routes>
+        <Route path="/" element={<h4>Main Root page</h4>} />
+
+        <Route element={<PrivateRoutes auth={auth} />}>
+          <Route path="/about-us" element={<h4>About us page</h4>} />
+          <Route path="/contact" element={<h4> Contact page</h4>} />
+          <Route path="/users" element={<h4>Users page</h4>} />
+          <Route path="/home" element={<h4>Home page</h4>} />
+          <Route path="/settings" element={<h4> Settings page</h4>} />
+        </Route>
+        <Route path="/login" element={<h4>login</h4>} />
+        <Route path="/forgot-password" element={<h4>Forgot Password</h4>} />
+        <Route path="/send-otp" element={<h4>OTP</h4>} />
+      </Routes>
+    </section>
   );
 }
 
